@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Configuration Items</title>
+    <link rel="stylesheet" href="styles.css">
+
+  </head>
+
+  <body>
+    <h1>User can edit CI, edit Outage is D/C</h1>
+    <p>
+      Menu
+      <a href="outage-index.html">Outages</a>
+      <a href="ci-index.html">Configuration Items</a>
+      <a href="#">Search</a>
+    </p>
+    <hr/>
+    <p>Spreadsheet-like/grid view of configuration items.</p>
+    <ul>
+      <li>Filters: radio buttons for all CIs vs. only CIs that I'm watching</li>
+      <li>Filters: check boxes for created by me, edited by me</li>
+      <li>Filters: free-form/wildcard text search on CI name, desription, and tags (TBC)</li>
+      <li>Filters: Show me what's changed (TBC)</li>
+      <li>Add/Edit notes</li>
+      <li>Add/Edit/Delete tags</li>
+      <li>Maybe more filters?</li>
+    </ul>
+
+    <table>
+      <thead>
+        <tr>
+          <td>
+            Short Description
+          </td>
+          <td>
+            Long Description
+          </td>
+          <td>
+            Watch?
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <a href="ci-edit.html">afappubu0020</a>
+            <!-- TODO: Where the above goes to may depend on permissions. -->
+          </td>
+          <td>
+            <p>
+              Ubuntu 16.04 server for Autism Funding application.
+            </p>
+          </td>
+          <td>
+            <p>
+              <input type="checkbox" name="watch" value="Yes" checked>
+              <!-- All watches have same properties, which come from user preferences -->
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="ci-edit.html">afappubu0021</a>
+            <!-- TODO: Where the above goes to may depend on permissions. -->
+          </td>
+          <td>
+            <p>
+              Ubuntu 16.04 server for Autism Funding application.
+            </p>
+          </td>
+          <td>
+            <p>
+              <input type="checkbox" name="watch" value="Yes" checked>
+              <!-- All watches have same properties, which come from user preferences -->
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="ci-edit.html">afappubu0022</a>
+            <!-- TODO: Where the above goes to may depend on permissions. -->
+          </td>
+          <td>
+            <p>
+              Ubuntu 16.04 server for Autism Funding application.
+            </p>
+          </td>
+          <td>
+            <p>
+              <input type="checkbox" name="watch" value="Yes" checked>
+              <!-- All watches have same properties, which come from user preferences -->
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <hr/>
+    <p>Footer</p>
+  </body>
+</html>

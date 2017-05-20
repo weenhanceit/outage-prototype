@@ -11,8 +11,7 @@
     <p>
       Menu
       <a href="outage-index.html">Outages</a>
-      <a href="#">Configuration Items</a>
-      <a href="#">Watches</a>
+      <a href="ci-index.html">Configuration Items</a>
       <a href="#">Search</a>
     </p>
     <hr/>
@@ -21,7 +20,7 @@
       <li>Filters: radio buttons for all outages vs. only outages that I'm watching</li>
       <li>Filters: calendar selects for start and end date time</li>
       <li>Filters: check boxes for created by me, edited by me</li>
-      <li>Filters: free-form/wildcard text search on CI name (TBC)</li>
+      <li>Filters: free-form/wildcard text search on CI name, outage descriptions, tags (TBC)</li>
       <li>Filters: Show me what's changed (TBC)</li>
       <li>Maybe more filters?</li>
     </ul>
@@ -40,6 +39,9 @@
           </td>
           <td>
             CIs
+          </td>
+          <td>
+            Watch?
           </td>
         </tr>
       </thead>
@@ -69,6 +71,12 @@
                           * Jump to Outages page, where whole list is displayed.
                         -->
               <a href="#">More...</a>
+            </p>
+          </td>
+          <td>
+            <p>
+              <input type="checkbox" name="watch" value="Yes" checked>
+              <!-- All watches have same properties, which come from user preferences -->
             </p>
           </td>
         </tr>
