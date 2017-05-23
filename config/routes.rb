@@ -5,5 +5,5 @@ Rails.application.routes.draw do
 
   # get "/outages", to: "outages#index", as: "outages_index"
   resources :outages, only: [ :index, :edit ]
-  resources :cis, only: [ :index, :edit ]
+  resources :cis, only: [ :index, :edit, :update ]
 end

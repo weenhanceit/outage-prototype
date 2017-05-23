@@ -8,7 +8,7 @@
   <li>Select or de-select children (multiple selections possible)</li>
   <!-- TODO: How could we show the impact of changes to the DAG? -->
   <li>Scrollable box with notes in reverse chronological order</li>
-  <li>Add/Edit notes attached to outage (connects on a blog post-type model TBC)</li>
+  <li>Add/Edit notes attached to CI (like Stach Overflow comments on questions TBC)</li>
   <li>Add/Delete Tags</li>
   <!-- TODO: How to deal with CIs that should be the same but aren't?
               This could be a separate page explicitly for de-duplication. -->
@@ -19,3 +19,20 @@
   <li>Name</li>
   <li>Long Description</li>
 </ul>
+
+<%= form_tag cis_path(1) do %>
+<p>
+  <%= label_tag "Name" %>
+  <%= text_field_tag "Name" %>
+  <%= label_tag "Watch" %>
+  <%= check_box_tag "Watch", 1, true %>
+</p>
+<p>
+  <%= label_tag "Description" %>
+  <%= text_area_tag "Description" %>
+</p>
+<p>
+  <%= submit_tag %>
+  <%= button_tag "Delete CI" %>
+</p>
+<% end %>

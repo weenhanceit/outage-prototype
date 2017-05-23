@@ -5,9 +5,9 @@
   <li>Filters: check boxes for created by me, edited by me</li>
   <li>Filters: free-form/wildcard text search on CI name, desription, and tags (TBC)</li>
   <li>Filters: Show me what's changed (TBC)</li>
+  <li>Maybe more filters?</li>
   <li>Add/Edit notes</li>
   <li>Add/Edit/Delete tags</li>
-  <li>Maybe more filters?</li>
 </ul>
 
 <table>
@@ -37,7 +37,7 @@
       </td>
       <td>
         <p>
-          <input type="checkbox" name="watch" value="Yes" checked>
+          <%= check_box_tag "Watch", 1, true %>
           <!-- All watches have same properties, which come from user preferences -->
         </p>
       </td>
@@ -54,7 +54,7 @@
       </td>
       <td>
         <p>
-          <input type="checkbox" name="watch" value="Yes" checked>
+          <%= check_box_tag "Watch", 1, true %>
           <!-- All watches have same properties, which come from user preferences -->
         </p>
       </td>
@@ -71,7 +71,7 @@
       </td>
       <td>
         <p>
-          <input type="checkbox" name="watch" value="Yes" checked>
+          <%= check_box_tag "Watch", 1, true %>
           <!-- All watches have same properties, which come from user preferences -->
         </p>
       </td>
