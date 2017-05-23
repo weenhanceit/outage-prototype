@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Outages Prototype</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <p>
+      Menu
+      <%= link_to "Outages", outages_path %>
+      <!-- <a href="outage-index.html">Outages</a> -->
+      <%= link_to "Configuration Items", cis_path %>
+      <!-- <a href="ci-index.html">Configuration Items</a> -->
+      <a href="#">Search</a>
+    </p>
+    <hr/>
+
+    <%= yield %>
+    <hr/>
+    <p>Footer</p>
+  </body>
+</html>

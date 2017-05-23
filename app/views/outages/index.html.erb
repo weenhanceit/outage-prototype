@@ -1,0 +1,75 @@
+<h1>User can edit outage, edit CI is D/C</h1>
+<p>Last-viewed calendar of outages, or spreadsheet-like view of outages.</p>
+<p>
+  By default you're seeing the list of outages that affect the CIs you're watching,
+  that happen in the next two weeks.
+</p>
+<ul>
+  <li>Filters: radio buttons for all outages vs. only outages that I'm watching</li>
+  <li>Filters: calendar selects for start and end date time</li>
+  <li>Filters: check boxes for created by me, edited by me</li>
+  <li>Filters: free-form/wildcard text search on CI name, outage descriptions, tags (TBC)</li>
+  <li>Filters: Show me what's changed (TBC)</li>
+  <li>Maybe more filters?</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <td>
+        Short Description
+      </td>
+      <td>
+        Start Time
+      </td>
+      <td>
+        End Time
+      </td>
+      <td>
+        CIs
+      </td>
+      <td>
+        Watch?
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <%= link_to "Short Description", edit_outage_path(1) %>
+        <!-- <a href="outage-edit.html"></a> -->
+        <p>
+          TODO: Where the above goes to may depend on permissions.
+        </p>
+      </td>
+      <td>
+        2017-06-17 12:37:00
+      </td>
+      <td>
+        2017-06-17 13:37:00
+      </td>
+      <td>
+        <p>
+          <%= link_to "CI 1", edit_ci_path(1) %>
+        </p>
+        <p>
+          <%= link_to "CI 2", edit_ci_path(1) %>
+        </p>
+        <p>
+          <!-- TODO: There are at least 3 options for long lists:
+                          * An intermediate page with the whole list (overlay)
+                          * Max height plus scroll bar
+                          * Jump to Outages page, where whole list is displayed.
+                        -->
+          <a href="#">More...</a>
+        </p>
+      </td>
+      <td>
+        <p>
+          <input type="checkbox" name="watch" value="Yes" checked>
+          <!-- All watches have same properties, which come from user preferences -->
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>

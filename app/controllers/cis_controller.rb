@@ -1,0 +1,2 @@
+class CisController < ApplicationController
+end
