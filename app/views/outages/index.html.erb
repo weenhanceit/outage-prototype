@@ -21,10 +21,17 @@
     <%= text_field_tag "ci_name" %>
   </p>
   <p>
+    <%= label_tag "tags", "Tags" %>
+    <%= text_field_tag "tags" %>
+  </p>
+  <p>
     <%= radio_button_tag :watching, "Watched", true %>
     <%= label_tag :watching, "Watched", value: "Watched" %>
     <%= radio_button_tag :watching, "All" %>
     <%= label_tag :watching, "All", value: "All" %>
+  </p>
+  <p>
+    Add outages not watched by me but: 
     <%= check_box_tag :created_by_me, 1, true %>
     <%= label_tag :created_by_me, "Created By Me" %>
     <%= check_box_tag :edited_by_me, 1, true %>

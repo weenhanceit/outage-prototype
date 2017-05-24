@@ -1,0 +1,51 @@
+<h2>Preferences</h2>
+
+<p>
+  <%= check_box_tag "hightlight", 1, true %>
+  <%= label_tag "hightlight", "Hightlight outages that are new or changed" %>
+  This might be show it in bold in the list or calendar views until
+  the user has read the outage. But what does "read the outage" mean?
+</p>
+<hr/>
+<p>
+  <%= check_box_tag "changes", 1, true %>
+  <%= label_tag "changes", "Send me an e-mail about new or changed outages for CIs I'm watching." %>
+  "Changed" means change to start or end time, CI list.
+</p>
+
+<p>
+  <%= check_box_tag "notes", 1, true %>
+  <%= label_tag "notes", "Send me an e-mail when notes are added, changed, or deleted." %>
+</p>
+
+<p>
+  <%= check_box_tag "warning", 1, true %>
+  <%= label_tag "warning", "Send me an e-mail" %>
+  <%= number_field_tag "warning_interval", 1 %>
+  <%= select_tag "warning_interval_unit", options_for_select([ "hours", "days", "weeks", "months" ], "days") %>
+  before outage starts.
+</p>
+
+<p>
+  <%= check_box_tag "completion", 1, true %>
+  <%= label_tag "completion", "Send me an e-mail when the outage is completed." %>
+</p>
+
+<p>
+  <%= check_box_tag "non_completion", 1, true %>
+  <%= label_tag "non_completion", "Send me an e-mail when the outage is not completed by its scheduled end time." %>
+</p>
+
+<p>
+  <p>
+    <%= radio_button_tag :digest, "separate", true %>
+    <%= label_tag :digest, "Individual e-mail for each outage", value: "separate" %>
+    <%= radio_button_tag :digest, "grouped" %>
+    <%= label_tag :digest, "One e-mail per", value: "grouped" %>
+    <%= select_tag "digest_interval_unit", options_for_select([ "hour", "day", "week", "month" ], "day") %>
+    at
+    <%= time_field_tag "e_mail_time", "08:00" %>
+  </p>
+</p>
+
+<%= submit_tag %>
