@@ -1,6 +1,15 @@
 <h2>Preferences</h2>
 
 <p>
+  Time Zone: <%= select_tag "time_zone", time_zone_options_for_select %>
+  Should default to the current time zone,
+  which if not set in the user profile,
+  should be set in a cookie
+  by Javascript based on the code to guess time zone
+  in the browser.
+</p>
+<hr/>
+<p>
   <%= check_box_tag "hightlight", 1, true %>
   <%= label_tag "hightlight", "Hightlight outages that are new or changed" %>
   This might be show it in bold in the list or calendar views until
