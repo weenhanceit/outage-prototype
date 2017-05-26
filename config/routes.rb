@@ -3,11 +3,10 @@ Rails.application.routes.draw do
 
   root "outages#index"
 
-
-
   # get "/outages", to: "outages#index", as: "outages_index"
-  resources :cis, only: [ :index, :edit, :update ]
+  resources :cis, only: [ :index, :edit, :update, :show ]
   resources :outages, only: [ :index, :edit, :show, :new]
   resources :preferences, only: [ :edit ]
+  resources :searches, only: [:index]
   resources :users, only: [ :create, :destroy ]
 end

@@ -12,10 +12,15 @@
     <p>
       <%= form_tag(users_path) do %>
         <%= select_tag "selected_privilege", options_for_select([ "Domain Admin", "User Admin (Manager)", "Can Edit CIs/Outages", "Basic User (Read Only)" ], current_user.user_id),
-          {onchange: "alert('hi');$(this).parent('form').submit();"}
+          {onchange: "$(this).parent('form').submit();"}
 
         %>
       <% end %>
+      <%= form_tag searches_path, method: :get do %>
+        <%= text_field_tag "search-criteria" %>
+        <%= submit_tag "Search", :name=>nil %>
+      <% end %>
+
     </p>
     <p>
       <span class="menu-item">
@@ -26,10 +31,6 @@
       </span>
       <span class="menu-item">
         <%= link_to "Preferences", edit_preference_path(1, priv: "very") %>
-      </span>
-      <span class="menu-item">
-        <%= text_field_tag "sesarch-criteria" %>
-        <a href="#">Search</a>
       </span>
       <span class="menu-item">
       </span>

@@ -23,4 +23,4 @@
 .vagrant
 
 # Stop Phil from checking in temporary files.
-pip
+pip*

@@ -31,8 +31,23 @@ module TestSuite
     }
     ]
   end
+  def note_list
+    [
+      {
+        "note_date"=>"2017-04-23",
+        "user" => "Larry",
+        "note" => "This is a note to say that this is getting too complicated and time consuming!"
+      },
+      {
+        "note_date"=>"2017-04-25",
+        "user" => "Phil",
+        "note" => "I couldn't agree more"
+      }
+    ]
+  end
   def outage_list
     cis = ci_list
+    notes = note_list
     [
       {"short_description" => "Development Systems Maintenance",
       "long_description" => "A really long description that nobody will read",
@@ -40,7 +55,8 @@ module TestSuite
       "end_time" => (Time.now + 5.days + 2.hours),
       "completed" => "no",
       "status" => "free form note",
-      "cis" => [{"id"=>0, "ci"=>cis[0]},{"id"=>1, "ci"=>cis[1]}]
+      "cis" => [{"id"=>0, "ci"=>cis[0]},{"id"=>1, "ci"=>cis[1]}],
+      "notes" => []
       },
       {"short_description" => "Upgrade of Autism-Funding Servers",
         "long_description" => "This outage is really scary because it impacts a bunch of things",
@@ -48,8 +64,9 @@ module TestSuite
         "end_time" => (Time.now + 7.days + 2.hours),
         "completed" => "no",
         "status" => "",
-        "cis" => [{"id"=>2, "ci"=>cis[2]},{"id"=>3, "ci"=>cis[3]},{"id"=>4, "ci"=>cis[4]},{"id"=>5, "ci"=>cis[5]}]
-      },
+        "cis" => [{"id"=>2, "ci"=>cis[2]},{"id"=>3, "ci"=>cis[3]},{"id"=>4, "ci"=>cis[4]},{"id"=>5, "ci"=>cis[5]}],
+        "notes" => [{"id"=>0, "note_item"=>notes[0]},{"id"=>1, "note_item"=>notes[1]}]
+      }
     ]
   end
 
