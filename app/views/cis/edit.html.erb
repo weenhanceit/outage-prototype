@@ -7,7 +7,8 @@
               This could be a separate page explicitly for de-duplication. -->
 </ul>
 
-<%= form_tag cis_path(1) do %>
+<%= form_tag ci_path(1), method: :put do %>
+<%# FIXME: method: :put is a hack for prototype %>
 <p>
   <%= label_tag "Name" %>
   <%= text_field_tag "Name" %>
@@ -54,10 +55,7 @@
   </div>
   <div class="m-md p-sm">
     <p>
-      <<
-    </p>
-    <p>
-      >>
+      << </p> <p> >>
     </p>
   </div>
   <div class="m-md">
@@ -83,10 +81,12 @@
 
 <p>
   <%= submit_tag %>
-  <%= button_tag "Delete CI" %> [Undoable.]
 </p>
-
 <% end %>
+<p>
+  <%= button_to "Delete CI", ci_path(1), method: :delete %>
+</p>
+[Undoable.]
 
 <h2>Notes</h2>
 <p>
