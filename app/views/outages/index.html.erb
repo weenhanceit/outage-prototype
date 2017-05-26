@@ -57,13 +57,22 @@
     <%= datetime_field_tag "latest", (Time.zone.now.beginning_of_day + 2.weeks).strftime("%Y-%m-%dT%H:%M") %>
   </p>
   <div class="content-note">
-      If an earliest date is provided, outages meet the criteria if the start_time
-      is later than the earliest date.  If the earliest date is blank, all start_time
-      meet the criteria.
-      <br>
-      if a latest date is provided, outages meet the criteria if the end_time
-      is earlier than the latest date.  If the latest date is blank, all end_time
-      meet the criteria.
+    <p>
+      If an earliest time is provided, show outages that don't end before the earliest time.
+      If the earliest time is blank, outage end time is a don't care.
+    </p>
+    <p>
+      If a latest time is provided, show outages that don't start after the end_time.
+      If the latest time is blank, the outage start time is a don't care.
+    </p>
+    <p>
+      If both times are provided, show the intersection of the above, or actually,
+      do both of the above tests in the same query.
+    </p>
+    <p>
+      Or to put it another way, show all outages that overlap the filer's start
+      and end times.
+    </p>
   </div>
 
 <% end %>
@@ -160,15 +169,15 @@
             <% if outage["cis"].size < 3 %>
               <% outage["cis"].each do |o| %>
                 <p>
-                  <%= link_to o["ci"]["name"], edit_ci_path(o["id"]) %>
+                  <%= link_to o["ci"]["name"], edit_or_show_ci_path(o["id"]) %>
                 </p>
               <% end %>
             <% else %>
               <p>
-                <%= link_to outage["cis"][0]["ci"]["name"], edit_ci_path(outage["cis"][0]["id"]) %>
+                <%= link_to outage["cis"][0]["ci"]["name"], edit_or_show_ci_path(outage["cis"][0]["id"]) %>
               </p>
               <p>
-                <%= link_to outage["cis"][1]["ci"]["name"], edit_ci_path(outage["cis"][1]["id"]) %>
+                <%= link_to outage["cis"][1]["ci"]["name"], edit_or_show_ci_path(outage["cis"][1]["id"]) %>
               </p>
               <p>
                 <%= link_to "More .. ", outage_path(index) %>

@@ -39,6 +39,10 @@
       </span>
     </p>
     <hr/>
+    <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
+      <hr/>
+    <% end -%>
 
     <%= yield %>
     <hr/>

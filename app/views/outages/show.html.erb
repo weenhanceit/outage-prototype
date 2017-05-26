@@ -46,7 +46,7 @@
       <td>
         <% @outage["cis"].each do |ci| %>
           <p>
-            <%= link_to ci["ci"]["name"], edit_ci_path(ci["id"]) %>
+            <%= link_to ci["ci"]["name"], edit_or_show_ci_path(ci["id"]) %>
           </p>
         <% end %>
       </td>
