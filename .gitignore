@@ -21,3 +21,6 @@
 .byebug_history
 
 .vagrant
+
+# Stop Phil from checking in temporary files.
+pip

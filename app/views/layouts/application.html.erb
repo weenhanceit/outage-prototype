@@ -12,20 +12,30 @@
     <p>
       <%= form_tag(users_path) do %>
         <%= select_tag "selected_privilege", options_for_select([ "Domain Admin", "User Admin (Manager)", "Can Edit CIs/Outages", "Basic User (Read Only)" ], current_user.user_id),
-          {onchange: "$(this).parent('form').submit();"}
+          {onchange: "alert('hi');$(this).parent('form').submit();"}
 
         %>
       <% end %>
-
-      <%= link_to "Outages", outages_path %>
-      <!-- <a href="outage-index.html">Outages</a> -->
-      <%= link_to "Configuration Items", cis_path %>
-      <!-- <a href="ci-index.html">Configuration Items</a> -->
-      <%= link_to "Preferences", edit_preference_path(1, priv: "very") %>
-      <a href="#">Search</a>
-
-      <%= link_to "Sign Out", user_path(1), method: :delete %>
-
+    </p>
+    <p>
+      <span class="menu-item">
+        <%= link_to "Outages", outages_path %>
+      </span>
+      <span class="menu-item">
+        <%= link_to "Configuration Items", cis_path %>
+      </span>
+      <span class="menu-item">
+        <%= link_to "Preferences", edit_preference_path(1, priv: "very") %>
+      </span>
+      <span class="menu-item">
+        <%= text_field_tag "sesarch-criteria" %>
+        <a href="#">Search</a>
+      </span>
+      <span class="menu-item">
+      </span>
+      <span class="menu-item">
+        <%= link_to "Sign Out", user_path(1), method: :delete %>
+      </span>
     </p>
     <hr/>
 

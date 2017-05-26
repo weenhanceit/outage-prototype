@@ -1,4 +1,10 @@
-<h1>User can edit outage, edit CI is D/C</h1>
+<h1>
+  List of Outages of Interest to the User
+  <br/>
+  <small>
+    User's home Page
+  </small>
+</h1>
 <p>Last-viewed calendar of outages, or spreadsheet-like view of outages.</p>
 <p>
   By default you're seeing the list of outages that affect the CIs you're watching,
@@ -31,7 +37,7 @@
     <%= label_tag :watching, "All", value: "All" %>
   </p>
   <p>
-    Add outages not watched by me but: 
+    Add outages not watched by me but:
     <%= check_box_tag :created_by_me, 1, true %>
     <%= label_tag :created_by_me, "Created By Me" %>
     <%= check_box_tag :edited_by_me, 1, true %>
@@ -59,6 +65,12 @@
         End Time
       </td>
       <td>
+        Completed?
+      </td>
+      <td>
+        Status
+      </td>
+      <td>
         CIs
       </td>
       <td>
@@ -67,42 +79,72 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>
-        <%= link_to "Short Description", edit_outage_path(1) %>
-        <!-- <a href="outage-edit.html"></a> -->
-        <p>
-          TODO: Where the above goes to may depend on permissions.
-        </p>
-      </td>
-      <td>
-        2017-06-17 12:37:00
-      </td>
-      <td>
-        2017-06-17 13:37:00
-      </td>
-      <td>
-        <p>
-          <%= link_to "CI 1", edit_ci_path(1) %>
-        </p>
-        <p>
-          <%= link_to "CI 2", edit_ci_path(1) %>
-        </p>
-        <p>
-          <!-- TODO: There are at least 3 options for long lists:
-                          * An intermediate page with the whole list (overlay)
-                          * Max height plus scroll bar
-                          * Jump to Outages page, where whole list is displayed.
-                        -->
-          <a href="#">More...</a>
-        </p>
-      </td>
-      <td>
-        <p>
-          <input type="checkbox" name="watch" value="Yes" checked>
-          <!-- All watches have same properties, which come from user preferences -->
-        </p>
-      </td>
-    </tr>
+    <% @outage_list.each_with_index do |outage, index| %>
+    <%# [1,2].each do |outage| %>
+
+      <tr>
+        <td>
+          <% if current_user.can_edit_outages? %>
+            <%= link_to outage["short_description"], edit_outage_path(index) %>
+          <% else %>
+            <%= link_to outage["short_description"], outage_path(index) %>
+          <% end %>
+        </td>
+        <td>
+          <%= outage["start_time"].strftime("%a, %d %b %Y %H:%M") %>
+        </td>
+        <td>
+          <%= outage["end_time"].strftime("%a, %d %b %Y %H:%M") %>
+        </td>
+        <td>
+          <%= outage["completed"] %>
+        </td>
+        <td>
+          <%= outage["status"] %>
+        </td>
+        <td>
+          <% if outage["cis"].size < 3 %>
+            <% outage["cis"].each do |o| %>
+              <p>
+                <%= link_to o["ci"]["name"], edit_ci_path(o["id"]) %>
+              </p>
+            <% end %>
+          <% else %>
+            <p>
+              <%= link_to outage["cis"][0]["ci"]["name"], edit_ci_path(outage["cis"][0]["id"]) %>
+            </p>
+            <p>
+              <%= link_to outage["cis"][1]["ci"]["name"], edit_ci_path(outage["cis"][1]["id"]) %>
+            </p>
+            <p>
+              <%= link_to "More .. ", outage_path(index) %>
+            </p>
+          <% end %>
+        </td>
+        <td>
+          <p>
+            <input type="checkbox" name="watch" value="Yes" checked>
+            <!-- All watches have same properties, which come from user preferences -->
+          </p>
+        </td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
+<p>
+  <% if current_user.can_edit_outages? %>
+    <%= link_to "<button>Add Outage</button>".html_safe, new_outage_path %>
+  <% end %>
+</p>
+<hr>
+<h4>Notes, Issues, Questions, Futures</h4>
+<ul>
+  <li>
+    There are at least 3 options for long lists:
+      <ul>
+          <li>An intermediate page with the whole list (overlay)</li>
+          <li>Max height plus scroll bar</li>
+          <li>Jump to Outages page, where whole list is displayed.</li>
+        </ul>
+  </li>
+</ul>

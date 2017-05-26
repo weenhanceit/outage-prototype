@@ -78,3 +78,8 @@
     </tr>
   </tbody>
 </table>
+<p>
+  <% if current_user.can_edit_cis? %>
+    <%= link_to "<button>Add CI</button>".html_safe, "" %>
+  <% end %>
+</p>
