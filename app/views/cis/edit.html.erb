@@ -1,23 +1,10 @@
-<h1>User can edit CI</h1>
+<h1>Edit CI</h1>
 <ul>
-  <li>Delete button. Delete must be un-doable. Delete doesn't actually remove the record from the database.</li>
-  <li>Edit name, which must be unique</li>
   <li>Edit alternate names/alias (TBC)</li>
-  <li>Set or clear watch on configuration item</li>
-  <li>Select or de-select parents (multiple selections possible)</li>
-  <li>Select or de-select children (multiple selections possible)</li>
   <!-- TODO: How could we show the impact of changes to the DAG? -->
-  <li>Scrollable box with notes in reverse chronological order</li>
-  <li>Add/Edit notes attached to CI (like Stach Overflow comments on questions TBC)</li>
   <li>Add/Delete Tags</li>
   <!-- TODO: How to deal with CIs that should be the same but aren't?
               This could be a separate page explicitly for de-duplication. -->
-</ul>
-
-<h2>Attributes</h2>
-<ul>
-  <li>Name</li>
-  <li>Long Description</li>
 </ul>
 
 <%= form_tag cis_path(1) do %>
@@ -31,8 +18,83 @@
   <%= label_tag "Description" %>
   <%= text_area_tag "Description" %>
 </p>
+
+<div class="flexbox">
+  <div class="flexbox vertical">
+    <div class="m-md ">
+      <h3>Parents</h3>
+      <div class="p-sm border-sm">
+        <ul class="js-droppable">
+          <li class="js-draggable">
+            afappubu0020
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="m-md">
+      <h3>Children</h3>
+      <div class="p-sm border-sm">
+        <ul class="js-droppable">
+          <li class="js-draggable">
+            afappubu0021
+          </li>
+        </ul>
+      </div>
+      <p>
+        <%= radio_button_tag :redundancy, "", true %>
+        <%= label_tag :minimum, "Minimum number of children required to maintain service" %>
+        <%= number_field_tag "minimum", 1 %>
+      </p>
+      <p>
+        <%= radio_button_tag :redundancy, "" %>
+        <%= label_tag :maximum, "Maximum number of children that can be unavailable and still maintain service" %>
+        <%= number_field_tag "maximum", 1 %>
+      </p>
+    </div>
+  </div>
+  <div class="m-md p-sm">
+    <p>
+      <<
+    </p>
+    <p>
+      >>
+    </p>
+  </div>
+  <div class="m-md">
+    <h3>Available CIs</h3>
+    <div class="border-sm p-md">
+      <ul class="js-droppable">
+        <li class="js-draggable">
+          afappubu0022
+        </li>
+        <li class="js-draggable">
+          outappubu0101
+        </li>
+        <li class="js-draggable">
+          outappubu0102
+        </li>
+        <li class="js-draggable">
+          outappubu0103
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
 <p>
   <%= submit_tag %>
-  <%= button_tag "Delete CI" %>
+  <%= button_tag "Delete CI" %> [Undoable.]
 </p>
+
 <% end %>
+
+<h2>Notes</h2>
+<p>
+  Note 1. Stack Overflow-style. Most recent first? Or sortable?
+</p>
+<p>
+  Note 2
+</p>
+<p>
+  Etc.
+</p>
