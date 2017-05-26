@@ -51,9 +51,24 @@
         <% end %>
       </td>
     </tr>
+    <tr>
+      <td>
+          Notes
+      </td>
+      <td>
+        <% @outage["notes"].each do |n| %>
+          <p>
+            <%= n["note_item"]["note_date"] %>
+            by
+            <%= n["note_item"]["user"] %>
+            <br/>
+            <%= n["note_item"]["note"] %>
+          </p>
+        <% end %>
+      </td>
+    </tr>
   <tbody>
 </table>
-
-<p>
-00
-</p>
+<div class="content-note">
+  Notes should be presented in a scrollable box in reverse order of date
+</div>
