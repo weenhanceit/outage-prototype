@@ -1,4 +1,4 @@
-<h1>User can edit CI, edit Outage is D/C</h1>
+<h1>Configuration Items</h1>
 <p>Spreadsheet-like/grid view of configuration items.</p>
 <ul>
   <li>Filters: radio buttons for all CIs vs. only CIs that I'm watching</li>
@@ -80,6 +80,6 @@
 </table>
 <p>
   <% if current_user.can_edit_cis? %>
-    <%= link_to "<button>Add CI</button>".html_safe, "" %>
+    <%= link_to "Add CI", new_ci_path, class: "btn" %>
   <% end %>
 </p>
