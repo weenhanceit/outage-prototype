@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def edit_or_show_ci_path(id)
-    current_user.can_edit_cis? ? edit_ci_path(id): show_ci_path(id)
+    current_user.can_edit_cis? ? edit_ci_path(id): ci_path(id)
   end
 
   helper_method :edit_or_show_ci_path
