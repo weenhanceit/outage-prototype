@@ -49,14 +49,32 @@ module TestSuite
     cis = ci_list
     notes = note_list
     [
+      {"short_description" => "Upgrade of Autism-Funding Servers",
+        "long_description" => "This outage is really scary because it impacts a bunch of things",
+        "start_time" => (Time.now + 7.days),
+        "end_time" => (Time.now + 7.days + 2.hours),
+        "completed" => "no",
+        "status" => "",
+        "cis" => [{"id"=>2, "ci"=>cis[2]}],
+        "notes" => []
+      },
+      {"short_description" => "Upgrade of Autism-Funding Servers",
+        "long_description" => "This outage is really scary because it impacts a bunch of things",
+        "start_time" => (Time.now + 7.days),
+        "end_time" => (Time.now + 7.days + 2.hours),
+        "completed" => "no",
+        "status" => "",
+        "cis" => [{"id"=>2, "ci"=>cis[2]}],
+        "notes" => []
+      },
       {"short_description" => "Development Systems Maintenance",
-      "long_description" => "A really long description that nobody will read",
-      "start_time" => (Time.now + 5.days),
-      "end_time" => (Time.now + 5.days + 2.hours),
-      "completed" => "no",
-      "status" => "free form note",
-      "cis" => [{"id"=>0, "ci"=>cis[0]},{"id"=>1, "ci"=>cis[1]}],
-      "notes" => []
+        "long_description" => "A really long description that nobody will read",
+        "start_time" => (Time.now + 5.days),
+        "end_time" => (Time.now + 5.days + 2.hours),
+        "completed" => "no",
+        "status" => "free form note",
+        "cis" => [{"id"=>0, "ci"=>cis[0]},{"id"=>1, "ci"=>cis[1]}],
+        "notes" => []
       },
       {"short_description" => "Upgrade of Autism-Funding Servers",
         "long_description" => "This outage is really scary because it impacts a bunch of things",

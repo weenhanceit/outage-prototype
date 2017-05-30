@@ -70,7 +70,7 @@
       do both of the above tests in the same query.
     </p>
     <p>
-      Or to put it another way, show all outages that overlap the filer's start
+      Or to put it another way, show all outages that overlap the filter's start
       and end times.
     </p>
   </div>
@@ -109,13 +109,16 @@
     <thead>
       <tr>
         <td>
-          Short Description
+          CIs
         </td>
         <td>
           Start Time
         </td>
         <td>
           End Time
+        </td>
+        <td>
+          Short Description
         </td>
         <td>
           Completed?
@@ -126,12 +129,9 @@
         <td>
           Notes
         </td>
-        <td>
-          CIs
-        </td>
-        <td>
+        <!-- <td>
           Watch?
-        </td>
+        </td> -->
       </tr>
     </thead>
     <tbody>
@@ -140,10 +140,22 @@
 
         <tr>
           <td>
-            <% if current_user.can_edit_outages? %>
-              <%= link_to outage["short_description"], edit_outage_path(index) %>
+            <% if outage["cis"].size < 3 %>
+            <% outage["cis"].each do |o| %>
+            <p>
+              <%= link_to o["ci"]["name"], edit_or_show_ci_path(o["id"]) %>
+            </p>
+            <% end %>
             <% else %>
-              <%= link_to outage["short_description"], outage_path(index) %>
+            <p>
+              <%= link_to outage["cis"][0]["ci"]["name"], edit_or_show_ci_path(outage["cis"][0]["id"]) %>
+            </p>
+            <p>
+              <%= link_to outage["cis"][1]["ci"]["name"], edit_or_show_ci_path(outage["cis"][1]["id"]) %>
+            </p>
+            <p>
+              <%= link_to "More .. ", outage_path(index) %>
+            </p>
             <% end %>
           </td>
           <td>
@@ -151,6 +163,13 @@
           </td>
           <td>
             <%= outage["end_time"].strftime("%a, %d %b %Y %H:%M") %>
+          </td>
+          <td>
+            <% if current_user.can_edit_outages? %>
+            <%= link_to outage["short_description"], edit_outage_path(index) %>
+            <% else %>
+            <%= link_to outage["short_description"], outage_path(index) %>
+            <% end %>
           </td>
           <td>
             <%= outage["completed"] %>
@@ -165,31 +184,12 @@
               no
             <% end %>
           </td>
-          <td>
-            <% if outage["cis"].size < 3 %>
-              <% outage["cis"].each do |o| %>
-                <p>
-                  <%= link_to o["ci"]["name"], edit_or_show_ci_path(o["id"]) %>
-                </p>
-              <% end %>
-            <% else %>
-              <p>
-                <%= link_to outage["cis"][0]["ci"]["name"], edit_or_show_ci_path(outage["cis"][0]["id"]) %>
-              </p>
-              <p>
-                <%= link_to outage["cis"][1]["ci"]["name"], edit_or_show_ci_path(outage["cis"][1]["id"]) %>
-              </p>
-              <p>
-                <%= link_to "More .. ", outage_path(index) %>
-              </p>
-            <% end %>
-          </td>
-          <td>
+          <!-- <td>
             <p>
               <input type="checkbox" name="watch" value="Yes" checked>
-              <!-- All watches have same properties, which come from user preferences -->
+              <!-- All watches have same properties, which come from user preferences
             </p>
-          </td>
+          </td> -->
         </tr>
       <% end %>
     </tbody>
