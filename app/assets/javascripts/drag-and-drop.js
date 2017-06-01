@@ -2,7 +2,22 @@ $(document).on('turbolinks:load', function() {
   // From: https://developer.mozilla.org/en-US/docs/Web/Events/dragstart
   // and modified
   var dragged;
-  var saved_background;
+  var saved_background = null;
+
+  function set_background(element) {
+    // console.log('Should I set background on element: ' + element.tagName);
+    if (saved_background === null) {
+      saved_background = element.style.backgroundColor;
+      element.style.backgroundColor = "#f0f0f0";
+      // console.log("Yes. I saved: " + saved_background);
+    }
+  }
+
+  function restore_background(element) {
+    // console.log("I'm going to restore background on element: " + element.tagName + " to " + saved_background);
+    element.style.backgroundColor = saved_background;
+    saved_background = null;
+  }
 
   $(".js-draggable").attr("draggable", true);
 
@@ -28,23 +43,31 @@ $(document).on('turbolinks:load', function() {
   });
 
   $(".js-droppable").on("dragenter", function(event) {
-    console.log("dragenter: " + this.tagName + " " + this.className);
-    saved_background = this.style.background;
-    this.style.background = "#f0f0f0";
+    console.log("dsragenter this: " + this.tagName + " " + this.className);
+    console.log("dragenter target: " + event.target.tagName + " " + event.target.className);
+    // if (event.target === this) {
+      set_background(this);
+    // }
   });
 
   $(".js-droppable").on("dragleave", function(event) {
-    console.log("dragleave: " + this.tagName + " " + this.className);
-    this.style.background = saved_background;
+    console.log("dragleave this: " + this.tagName + " " + this.className);
+    console.log("dragleave target: " + event.target.tagName + " " + event.target.className);
+    // if (event.target === this) {
+      restore_background(this);
+    // }
   });
 
   $(".js-droppable").on("drop", function(event) {
-    console.log("drop: " + this.tagName + " " + this.className);
-    console.log("preventing default");
+    console.log("drosp: " + this.tagName + " " + this.className);
+    console.log("drosp: " + event.target.tagName + " " + event.target.className);
+    // console.log("preventing default");
     event.preventDefault();
-    this.style.background = saved_background;
+    // if (event.target === this) {
+      restore_background(this);
+    // }
     if (dragged.parentNode !== this) {
-      console.log("moving element");
+      // console.log("moving element");
       dragged.parentNode.removeChild(dragged);
       this.appendChild(dragged);
     }
